@@ -1,7 +1,7 @@
-from Dimensions.Dimension import Dimension
-from Metrics.humanReadable import humanReadableURIs
-from Metrics.humanDesc import humanDesc
-from Metrics.longTerm import longTerm
+from EvaMap.Dimensions.Dimension import Dimension
+from EvaMap.Metrics.humanReadable import humanReadableURIs
+from EvaMap.Metrics.humanDesc import humanDesc
+from EvaMap.Metrics.longTerm import longTerm
 
 
 class Clarity(Dimension) :

@@ -1,7 +1,7 @@
 import rdflib
 import requests
 
-from Metrics.metric import metric
+from EvaMap.Metrics.metric import metric
 
 def longTerm(g_onto, liste_map, g_map, raw_data, g_link) : #Complété, corrigé et fonctionnel. Revoir le return ? -----------------------------------------------------
     nbPossible = 0

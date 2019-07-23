@@ -2,7 +2,7 @@ import rdflib
 import requests
 import json
 
-from Metrics.metric import metric
+from EvaMap.Metrics.metric import metric
 
 def existingVocab(g_onto, liste_map, g_map, raw_data, g_link) :
     set_URIs = set()

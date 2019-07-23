@@ -1,6 +1,6 @@
 import rdflib
 
-from Metrics.metric import metric
+from EvaMap.Metrics.metric import metric
 
 def domainRange(g_onto, liste_map, g_map, raw_data, g_link) : #Il est bon de noter ici qu'un mapping avec peu de lien externes peut potentiellement donner une mauvaise note, sans pour autant être mauvais
     #Cas des littéraux avec datatype non pris en compte! A voir si y'a le temps

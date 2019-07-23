@@ -1,7 +1,7 @@
 import rdflib
 import requests
 
-from Metrics.metric import metric
+from EvaMap.Metrics.metric import metric
 
 def longURI(g_onto, liste_map, g_map, raw_data, g_link) :
     result = metric()

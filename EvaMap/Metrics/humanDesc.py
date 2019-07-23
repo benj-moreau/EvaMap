@@ -1,4 +1,4 @@
-from Metrics.metric import metric
+from EvaMap.Metrics.metric import metric
 
 import rdflib
 

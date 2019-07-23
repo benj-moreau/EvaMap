@@ -1,5 +1,5 @@
-from Dimensions.Dimension import Dimension
-from Metrics.verticalCoverage import verticalCoverage
+from EvaMap.Dimensions.Dimension import Dimension
+from EvaMap.Metrics.verticalCoverage import verticalCoverage
 
 class Coverability(Dimension) :
 

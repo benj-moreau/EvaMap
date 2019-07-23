@@ -3,7 +3,7 @@ import re
 
 import rdflib
 
-from Metrics.metric import metric
+from EvaMap.Metrics.metric import metric
 
 def humanReadableURIs(g_onto, liste_map, g_map, raw_data, g_link) : #Complet --------------------------------------------------------------------------------
     nbPossible = 0

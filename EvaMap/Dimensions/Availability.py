@@ -1,7 +1,7 @@
-from Dimensions.Dimension import Dimension
-from Metrics.A_Error import Error
-from Metrics.localLink import localLink
-from Metrics.externalLink import externalLink
+from EvaMap.Dimensions.Dimension import Dimension
+from EvaMap.Metrics.A_Error import Error
+from EvaMap.Metrics.localLink import localLink
+from EvaMap.Metrics.externalLink import externalLink
 
 
 class Availability(Dimension):

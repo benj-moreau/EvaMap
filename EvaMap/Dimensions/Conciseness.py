@@ -1,6 +1,6 @@
-from Dimensions.Dimension import Dimension
-from Metrics.longURI import longURI
-from Metrics.duplicatedRules import duplicatedRules
+from EvaMap.Dimensions.Dimension import Dimension
+from EvaMap.Metrics.longURI import longURI
+from EvaMap.Metrics.duplicatedRules import duplicatedRules
 
 class Conciseness(Dimension) :
 

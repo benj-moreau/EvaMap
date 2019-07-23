@@ -4,12 +4,12 @@ import re
 from rdflib.graph import Graph
 import json
 
-from Dimensions.Availability import Availability
-from Dimensions.Clarity import Clarity
-from Dimensions.Conciseness import Conciseness
-from Dimensions.Connectability import Connectability
-from Dimensions.Consistency import Consistency
-from Dimensions.Coverability import Coverability
+from EvaMap.Dimensions.Availability import Availability
+from EvaMap.Dimensions.Clarity import Clarity
+from EvaMap.Dimensions.Conciseness import Conciseness
+from EvaMap.Dimensions.Connectability import Connectability
+from EvaMap.Dimensions.Consistency import Consistency
+from EvaMap.Dimensions.Coverability import Coverability
 
 
 class EvaMap:

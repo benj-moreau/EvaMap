@@ -1,8 +1,8 @@
-from Dimensions.Dimension import Dimension
-from Metrics.sameAs import sameAs
-from Metrics.externalURIs import externalURIs
-from Metrics.localLinks import localLinks
-from Metrics.existingVocab import existingVocab
+from EvaMap.Dimensions.Dimension import Dimension
+from EvaMap.Metrics.sameAs import sameAs
+from EvaMap.Metrics.externalURIs import externalURIs
+from EvaMap.Metrics.localLinks import localLinks
+from EvaMap.Metrics.existingVocab import existingVocab
 
 class Connectability(Dimension) :
 

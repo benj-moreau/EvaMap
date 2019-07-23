@@ -1,8 +1,8 @@
-from Dimensions.Dimension import Dimension
-from Metrics.subClassesProperties import subClassesProperties
-from Metrics.equivalentClassesProperties import equivalentClassesProperties
-from Metrics.disjointWith import disjointWith
-from Metrics.domainRange import domainRange
+from EvaMap.Dimensions.Dimension import Dimension
+from EvaMap.Metrics.subClassesProperties import subClassesProperties
+from EvaMap.Metrics.equivalentClassesProperties import equivalentClassesProperties
+from EvaMap.Metrics.disjointWith import disjointWith
+from EvaMap.Metrics.domainRange import domainRange
 
 class Consistency(Dimension) :
 

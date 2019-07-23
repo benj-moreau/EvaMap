@@ -1,7 +1,7 @@
 import rdflib
 import requests
 
-from Metrics.metric import metric
+from EvaMap.Metrics.metric import metric
 
 def localLinks(g_onto, liste_map, g_map, raw_data, g_link) : #Retrourne en quelque sorte le nombre d'îlots. Opérationnel --------------------------------------------------------------------
     liste_value = []
