@@ -109,7 +109,7 @@ class EvaMap:
         for poids in self.liste :
             self.weight[i] = poids
 
-    def calc_tot(self):
+    def evaluate_mapping(self):
         self.final_score = 0
         tot_weight = 0
         for dimension in self.dimensions_list:
@@ -119,3 +119,9 @@ class EvaMap:
             self.final_score += (dimension[1] * dimension_score)
             tot_weight += dimension[1]
         self.final_score = self.final_score / tot_weight
+
+    def get_total_score(self):
+        return self.final_score
+
+    def get_complet_result(self):
+        return self.final_list
