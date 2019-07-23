@@ -21,7 +21,7 @@ First, instantiation of an EvaMap object takes three parameters:
 3) **json_data**: The dataset in JSON format
 
 ```python
-from pyevamap.EvaMap import EvaMap
+from EvaMap.EvaMap import EvaMap
 
 evamap = EvaMap(rdf_ontology, yarrrml_mapping, json_data)
 ```
