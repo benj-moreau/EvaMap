@@ -1,5 +1,7 @@
 # LibraryEvaMap
 
+A python library that can assess the quality of an RDF mapping.
+
 ### Installation
 
 Installation in a `virtualenv` is recommended.
