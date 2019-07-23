@@ -1,11 +1,7 @@
-#import sys
-import os
 import rdflib
 import yaml
 import re
 from rdflib.graph import Graph
-from pathlib import Path
-import requests
 import json
 
 from Dimensions.Availability import Availability
@@ -28,18 +24,17 @@ class EvaMap:
     raw_data = {}
     final_score = 0
 
-    def __init__(self, onto, map, data):
-        self.read_json(data) #From json
-        self.read_yaml(map)  #From yaml
-        self.read_rdf(onto)
+    def __init__(self, rdf_ontology, yarrrml_mapping, json_data):
+        self.read_json(json_data)
+        self.read_yaml(yarrrml_mapping)
+        self.read_rdf(rdf_ontology)
         nbTriples = 0
         for triple in self.liste_map:
             nbTriples = nbTriples + 1
             self.g_link.add(triple)
             self.g_map.add(triple)
-        weight = dict() #Intialiser par défaut tous les poids, avec les noms de toutes les dimensions.
+        weight = dict()
 
-    #Regarder comment bien lire les fichiers avec la webApp
     def read_json(self, json_data):
         self.raw_data = json.loads(json_data)
         self.raw_data = self.raw_data["records"]
@@ -100,7 +95,12 @@ class EvaMap:
         return liste_map
 
     def read_rdf(self, rdf):
-        self.g_onto.parse(data=rdf, format='turtle')
+        for format in 'xml', 'turtle', 'nt':
+            try:
+                self.g_onto.parse(data=rdf, format=format)
+                break
+            except Exception:
+                pass
         for s, p, o in self.g_onto.triples((None, None, None)):
             self.g_link.add((s, p, o))
 
