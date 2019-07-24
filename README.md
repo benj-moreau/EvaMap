@@ -9,7 +9,7 @@ Installation in a `virtualenv` is recommended.
 Assuming you already have `python 3` and `pip` installed
 
 ```bash
-pip install pycali
+pip install EvaMap
 ```
 
 ### Initialize EvaMap
