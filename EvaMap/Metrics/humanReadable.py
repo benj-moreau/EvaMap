@@ -5,76 +5,43 @@ import rdflib
 
 from EvaMap.Metrics.metric import metric
 
-def humanReadableURIs(g_onto, liste_map, g_map, raw_data, g_link) : #Complet --------------------------------------------------------------------------------
+def humanReadableURIs(g_onto, liste_map, g_map, raw_data, g_link) :
     nbPossible = 0
     points = 0
     result = metric()
     result['name'] = "Human readable URIs"
-    for s, p, o in g_map.triples((None, None, None)) :
+    set_URIs = set()
+    for s, p, o in g_map.triples((None, None, None)):
         if isinstance(s, rdflib.term.URIRef) :
+            set_URIs.add(s)
+    for s in set_URIs:
+        if isinstance(s, rdflib.term.URIRef):
             nbPossible = nbPossible + 1
             str = urlparse(s)
-            if str.fragment != '' :
+            if str.fragment != '':
                 str = str.fragment
                 if test_HumanReadable(str) :
                     points = points + 1
                 else :
-                    result['feedbacks'].append(str + "is not Human Readable")
+                    result['feedbacks'].append(f"It seems that {str} is not a Human Readable URI")
             else :
                 str = str.path
                 str = str.split("/")[-1]
                 if test_HumanReadable(str) :
                     points = points + 1
                 else :
-                    result['feedbacks'].append(str + "is not Human Readable")
+                    result['feedbacks'].append(f"It seems that {str} is not a Human Readable URI")
             if str.startswith('$') :
                 nbPossible = nbPossible - 1
                 points = points - 1
-        if isinstance(p, rdflib.term.URIRef) and p != rdflib.term.URIRef('a'):
-            nbPossible = nbPossible + 1
-            str = urlparse(p)
-            if str.fragment != '' :
-                str = str.fragment
-                if test_HumanReadable(str) :
-                    points = points + 1
-                else :
-                    result['feedbacks'].append(str + "is not Human Readable")
-            else :
-                str = str.path
-                str = str.split("/")[-1]
-                if test_HumanReadable(str) :
-                    points = points + 1
-                else :
-                    result['feedbacks'].append(str + "is not Human Readable")
-            if str.startswith('$') :
-                nbPossible = nbPossible - 1
-                points = points - 1
-        if isinstance(o, rdflib.term.URIRef) :
-            nbPossible = nbPossible + 1
-            str = urlparse(o)
-            if str.fragment != '' :
-                str = str.fragment
-                if test_HumanReadable(str) :
-                    points = points + 1
-                else :
-                    result['feedbacks'].append(str + "is not Human Readable")
-            else :
-                str = str.path
-                str = str.split("/")[-1]
-                if test_HumanReadable(str) :
-                    points = points + 1
-                else :
-                    result['feedbacks'].append(str + "is not Human Readable")
-            if str.startswith('$') :
-                nbPossible = nbPossible - 1
-                points = points - 1
-    if nbPossible == 0 :
+    if nbPossible == 0:
         result['score'] = 1
-    else :
+    else:
         result['score'] = 1-((nbPossible) - points)/(nbPossible)
     return result
 
-def test_HumanReadable(str) : #------------------------ Utilisé au dessus --------------------------------------------------
+
+def test_HumanReadable(str) :
     if not str.startswith('$') :
         regexp = re.compile(r'[A-Z][A-Z][A-Z]') #Si on a une suite de 3 majuscules
         if regexp.search(str):

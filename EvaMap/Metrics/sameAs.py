@@ -16,9 +16,11 @@ def sameAs(g_onto, liste_map, g_map, raw_data, g_link) :
         nbPossible = nbPossible + 1
         for _, _, _  in g_map.triples((elt, rdflib.term.URIRef('http://www.w3.org/2002/07/owl#sameAs'), None)) :
             points = points + 1
-    if nbPossible == 0 :
+    if points < 1 :
         result['score'] = 0
-        result['feedbacks'].append("You should use some sameAs properties")
+        result['feedbacks'].append("No sameAs defined")
     else :
-        result['score'] = points/(nbPossible)
+        result['score'] = 0
+        if nbPossible != 0:
+            result['score'] = points/(nbPossible)
     return result

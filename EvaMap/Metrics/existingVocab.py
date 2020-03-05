@@ -30,7 +30,7 @@ def existingVocab(g_onto, liste_map, g_map, raw_data, g_link) :
         lien = 'https://lov.linkeddata.es/dataset/lov/api/v2/term/search?q=' + elt + '&type=class'
         request = requests.get(lien)
         json_data = json.loads(request.text)
-        if json_data["total_results"] != 0 :
+        if json_data["total_results"] != 0:
             points = points + 1
         else :
             result['feedbacks'].append(str(elt) + " is not referenced in LOV.")

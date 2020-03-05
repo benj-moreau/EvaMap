@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(name='EvaMap',
-                 version='1.0.3',
+                 version='2.0.1',
                  description='A python library that can assess the quality of an RDF mapping',
                  long_description=long_description,
                  long_description_content_type="text/markdown",

@@ -1,5 +1,4 @@
 import rdflib
-import requests
 
 from EvaMap.Metrics.metric import metric
 
@@ -20,7 +19,7 @@ def longTerm(g_onto, liste_map, g_map, raw_data, g_link) : #Complété, corrigé
                 if int(elements) > 1990 and int(elements) < 2050 :
                     points = points + 1
                 else :
-                    result['feedbacks'].append(elements + "should contain a date.")
+                    result['feedbacks'].append(elements + "should contain a date")
             except ValueError :
                 pass
     if nbPossible == 0 :
