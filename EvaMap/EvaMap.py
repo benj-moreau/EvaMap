@@ -25,7 +25,7 @@ class EvaMap:
     def __init__(self, rdf_ontology, yarrrml_mapping, json_data):
         if not self.read_json(json_data): return
         if not self.read_rdf(rdf_ontology): return
-        self.g_link = YARRRML.parse_to_rdf_mapping(yarrrml_mapping)
+        self.g_link, self.liste_map = YARRRML.parse_to_rdf_mapping(yarrrml_mapping)
         self.g_map = self.g_link
 
     def read_json(self, json_data):

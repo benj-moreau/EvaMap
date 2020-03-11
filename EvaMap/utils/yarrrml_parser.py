@@ -39,8 +39,8 @@ def parse_to_rdf_mapping(rml_mapping):
     rml_mapping = yaml.safe_load(rml_mapping)
     prefixes = parse_prefixes(rml_mapping)
     resources = parse_subjects(rml_mapping, prefixes)
-    rdf_semantic_mapping = parse_predicate_objects(rml_mapping, resources, prefixes)
-    return rdf_semantic_mapping
+    rdf_semantic_mapping, list_map = parse_predicate_objects(rml_mapping, resources, prefixes)
+    return rdf_semantic_mapping, list_map
 
 
 def parse_prefixes(rml_mapping):
@@ -63,6 +63,7 @@ def parse_subjects(rml_mapping, prefixes):
 
 def parse_predicate_objects(rml_mapping, resources, prefixes):
     rdf_semantic_mapping = Graph()
+    list_map = []
     for mapping_key, mapping in get_keys(rml_mapping, YARRRML_KEYS['mappings']).items():
         if mapping_key in resources:
             subject = resources[mapping_key]
@@ -71,16 +72,17 @@ def parse_predicate_objects(rml_mapping, resources, prefixes):
                 for predicate in predicate_object[0]:
                     predicate = parse_uri_template(predicate, prefixes)
                     for obj in predicate_object[1]:
-                        rdf_semantic_mapping = parse_object(rdf_semantic_mapping,
+                        rdf_semantic_mapping, list_map = parse_object(rdf_semantic_mapping,
                                                             subject,
                                                             predicate,
                                                             obj,
                                                             resources,
-                                                            prefixes)
-    return rdf_semantic_mapping
+                                                            prefixes,
+                                                            list_map)
+    return rdf_semantic_mapping, list_map
 
 
-def parse_object(rdf_semantic_mapping, subject, predicate, obj, resources, prefixes):
+def parse_object(rdf_semantic_mapping, subject, predicate, obj, resources, prefixes, list_map):
     if len(obj) > 0:
         object_value = obj[0]
         uri = parse_uri_template(object_value, prefixes)
@@ -109,7 +111,8 @@ def parse_object(rdf_semantic_mapping, subject, predicate, obj, resources, prefi
                 else:
                     obj = Literal(object_value, datatype=datatype)
         rdf_semantic_mapping.add((subject, predicate, obj))
-    return rdf_semantic_mapping
+        list_map.append((subject, predicate, obj))
+    return rdf_semantic_mapping, list_map
 
 
 def parse_uri_template(template, prefixes):
