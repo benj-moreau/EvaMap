@@ -6,7 +6,7 @@ def humanDesc(g_onto, liste_map, g_map, raw_data, g_link) : #Revoir le return, o
     nbPossible = 0
     result = metric()
     result['score'] = 0
-    result['name'] = "Usage of description of label"
+    result['name'] = "Usage of description or label"
     points = 0
     set_URIs = set()
     for s, _, _ in g_map.triples((None, None, None)):
