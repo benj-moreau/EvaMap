@@ -21,7 +21,6 @@ class Dimension:
         self.score = 0
         for metric in self.list_metrics:
             result_metric = metric(g_onto, liste_map, g_map, raw_data, g_link)
-            # print(result_metric)
             self.score += result_metric['score'] / len(self.list_metrics)
             self.list_results.append(result_metric)
         return self.score
