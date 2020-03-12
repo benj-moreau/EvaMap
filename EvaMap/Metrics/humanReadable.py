@@ -1,4 +1,3 @@
-from urllib.parse import urlparse
 import re
 
 import rdflib
@@ -12,37 +11,25 @@ def humanReadableURIs(g_onto, liste_map, g_map, raw_data, g_link) :
     result['name'] = "Human readable URIs"
     set_URIs = set()
     for s, p, o in g_map.triples((None, None, None)):
-        if isinstance(s, rdflib.term.URIRef) :
+        if isinstance(s, rdflib.term.URIRef):
             set_URIs.add(s)
     for s in set_URIs:
-        if isinstance(s, rdflib.term.URIRef):
-            nbPossible = nbPossible + 1
-            str = urlparse(s)
-            if str.fragment != '':
-                str = str.fragment
-                if test_HumanReadable(str) :
-                    points = points + 1
-                else :
-                    result['feedbacks'].append(f"It seems that {str} is not a Human Readable URI")
-            else :
-                str = str.path
-                str = str.split("/")[-1]
-                if test_HumanReadable(str) :
-                    points = points + 1
-                else :
-                    result['feedbacks'].append(f"It seems that {str} is not a Human Readable URI")
-            if str.startswith('$') :
-                nbPossible = nbPossible - 1
-                points = points - 1
+        nbPossible = nbPossible + 1
+        uri = str(s)
+        uri = uri.split('$')[0]
+        if test_HumanReadable(uri):
+            points = points + 1
+        else :
+            result['feedbacks'].append(f"It seems that {uri} is not a Human Readable URI")
     if nbPossible == 0:
         result['score'] = 1
     else:
-        result['score'] = 1-((nbPossible) - points)/(nbPossible)
+        result['score'] = points/nbPossible
     return result
 
 
 def test_HumanReadable(str) :
-    if not str.startswith('$') :
+    if not str.startswith('$'):
         regexp = re.compile(r'[A-Z][A-Z][A-Z]') #Si on a une suite de 3 majuscules
         if regexp.search(str):
             return False

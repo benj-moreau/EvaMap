@@ -23,7 +23,7 @@ def externalLink(g_onto, liste_map, g_map, raw_data, g_link) : #Fonctionnel
             pass
         if str(elt) != str(deb) :
             for elements in raw_data :
-                link = deb + elements['fields'][fin]
+                link = deb + str(elements['fields'][fin])
                 nbPossible = nbPossible + 1
                 a = requests.get(link)
                 try :
