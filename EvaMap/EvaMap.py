@@ -59,6 +59,8 @@ class EvaMap:
 
     def evaluate_mapping(self):
         self.final_score = 0
+        self.score_tot = []
+        self.final_list = []
         tot_weight = 0
         for dimension in self.dimensions_list:
             dimension_score = dimension[0].calc_score(self.g_onto, self.liste_map, self.g_map, self.raw_data, self.g_link)
